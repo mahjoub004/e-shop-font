@@ -1,0 +1,22 @@
+<!-- search -->
+<form class="d-flex" role="search">
+  <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+  <button class="btn btn-outline-success" type="submit">Search</button>
+</form>
+<!-- Products -->
+<div class="container mt-3">
+  <div class="row">
+    <div class="col-md-4 mb-3" *ngFor="let tempProducts of products">
+      <div class="card">
+        <img src="https://via.placeholder.com/300x200" class="card-img-top" alt="Produit 3">
+        <div class="card-body">
+          <h5 class="card-title">{{tempProducts.name}}</h5>
+          <p class="card-text">{{tempProducts.description}}</p>
+          <p class="card-text">{{tempProducts.unitPrice}} kg</p>
+          <a href="#" class="btn btn-primary">Acheter</a>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
