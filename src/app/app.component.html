@@ -40,30 +40,19 @@
 <div class="container">
   <div class="row">
     <div class="col-md-3">
-      <!-- Barre latérale de catégories -->
-      <div class="card">
-        <div class="card-header">
-          Catégories
-        </div>
-        <ul class="list-group list-group-flush">
-          <li class="list-group-item"><a routerLink="/category/1"routerLinkActive="active-link">Fruits</a></li>
-          <li class="list-group-item"><a routerLink="/category/2"routerLinkActive="active-link">Légumes</a></li>
-          <li class="list-group-item"><a routerLink="/category/3"routerLinkActive="active-link">Fruits Exotiques</a></li>
-        </ul>
-      </div>
-    </div>
+
+      <app-product-category-menu></app-product-category-menu>
+</div>
     <!-- Contenu principal -->
     <div class="col-md-9">
-      <app-product-list></app-product-list>
+      <router-outlet></router-outlet>
     </div>
-
 
   </div>
 </div>
 
 
 
-<router-outlet></router-outlet>
 
 
 
