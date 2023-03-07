@@ -1,8 +1,3 @@
-<!-- search -->
-<form class="d-flex" role="search">
-  <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-  <button class="btn btn-outline-success" type="submit">Search</button>
-</form>
 <!-- Products -->
 <div class="container mt-3">
   <div class="row">
@@ -17,5 +12,11 @@
         </div>
       </div>
     </div>
+
+    <!-- if products empty then display a message  -->
+    <div class="alert alert-danger" role="alert" *ngIf="products?.length == 0">
+      No products found
+    </div>
+
   </div>
 </div>

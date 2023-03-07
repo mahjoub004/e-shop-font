@@ -31,9 +31,16 @@ export class ProduitService {
       map(response => response._embedded.productCategory)
     );
   }
+
+  searchProducts(theKeyWord: string): Observable<Product[]> {
+    const searchUrlById = `http://localhost:8080/api/products/search/findByNameContaining?name=${theKeyWord}`
+
+    return this.httpClient.get<GetResponseProduct>(searchUrlById).pipe(
+      map(response => response._embedded.products)
+    );
+  }
+
 }
-
-
 
   interface GetResponseProduct{
     _embedded:{

@@ -6,36 +6,62 @@ import { ProduitService } from 'src/app/services/produit.service';
 @Component({
   selector: 'app-product-list',
   templateUrl: './product-list.component.html',
-  styleUrls: ['./product-list.component.css']
+  styleUrls: ['./product-list.component.css'],
 })
-export class ProductListComponent implements OnInit{
-
+export class ProductListComponent implements OnInit {
   products: Product[] = [];
   currentCategoryId!: number;
+  searchMode: boolean = false;
 
-  constructor( private productService : ProduitService,
-                private route:ActivatedRoute ) { }
+  constructor(
+    private productService: ProduitService,
+    private route: ActivatedRoute
+  ) {}
 
   ngOnInit(): void {
     this.route.paramMap.subscribe(() => {
       this.listProducts();
     });
-
   }
+
+
   listProducts() {
+    this.searchMode = this.route.snapshot.paramMap.has('keyword');
+    if (this.searchMode) {
+      this.handleSearchProducts();
+    } else {
+      this.handleListProducts();
+    }
+  }
+
+
+  handleSearchProducts() {
+    const thekeyWord:string = (this.route.snapshot.paramMap.get('keyword'))!;
+    // search for the products using keyword
+    this.productService.searchProducts(thekeyWord).subscribe(
+      (data: Product[]) => {
+        this.products = data;
+      }
+    )
+  }
+/**/
+
+  handleListProducts() {
     //chech if "id" parametre is available
-    const hasCategoryId : boolean = this.route.snapshot.paramMap.has('id');
+    const hasCategoryId: boolean = this.route.snapshot.paramMap.has('id');
 
     // get the "id" param string. couvert string to a number using the "+" symbol
-    if (hasCategoryId ) {
-        this.currentCategoryId = (+this.route.snapshot.paramMap.get('id')!);
-    }else{
+    if (hasCategoryId) {
+      this.currentCategoryId = +this.route.snapshot.paramMap.get('id')!;
+    } else {
       // not category id available
-      this.currentCategoryId = 1 ;
+      this.currentCategoryId = 1;
     }
-      // now get the products for the given category id
-    this.productService.getProductList(this.currentCategoryId).subscribe(
-      data => {this.products = data}
-    )
+    // now get the products for the given category id
+    this.productService
+      .getProductList(this.currentCategoryId)
+      .subscribe((data) => {
+        this.products = data;
+      });
   }
 }

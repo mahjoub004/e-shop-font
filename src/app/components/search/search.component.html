@@ -1,1 +1,11 @@
-<p>search works!</p>
+<!-- search -->
+<div class="d-flex" role="search">
+
+  <input class="form-control me-2" #myInput type="text" placeholder="Search for products ..."
+    (keyup.enter)="doSearch(myInput.value)">
+
+  <button (click)="doSearch(myInput.value)" class="btn btn-outline-success" type="submit">
+    Search
+  </button>
+
+</div>
