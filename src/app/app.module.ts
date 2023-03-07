@@ -8,13 +8,15 @@ import { ProduitService } from './services/produit.service';
 import { ProductListComponent } from './components/product-list/product-list.component';
 import { ProductCategoryMenuComponent } from './components/product-category-menu/product-category-menu.component';
 import { SearchComponent } from './components/search/search.component';
+import { ProductsDetailsComponent } from './components/products-details/products-details.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     ProductListComponent,
     ProductCategoryMenuComponent,
-    SearchComponent
+    SearchComponent,
+    ProductsDetailsComponent
   ],
   imports: [
     BrowserModule,
