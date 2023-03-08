@@ -15,7 +15,13 @@ export class ProduitService {
   private baseUrl = 'http://localhost:8080/api/product-category'
 
   constructor(private httpClient : HttpClient ) { }
-
+//
+getProducts(theProductId: number): Observable<Product> {
+  // need to build URL based on product Id
+  const urlProductId = `http://localhost:8080/api/products/${theProductId}`;
+  return this.httpClient.get<Product>(urlProductId);
+}
+//
   getProductList(_theCategoryId: number = 1): Observable<Product[]>{
     //@TODO : need to build URL based on category ID .. will come back to this
     const searchUrlById = `http://localhost:8080/api/product-category/${_theCategoryId}/products`
@@ -24,14 +30,14 @@ export class ProduitService {
       map(response => response._embedded.products)
     );
   }
-
+//
   getProductCategories():Observable <ProductCategory[]> {
 
     return this.httpClient.get<GetResponseProductCategory>(this.baseUrl).pipe(
       map(response => response._embedded.productCategory)
     );
   }
-
+//
   searchProducts(theKeyWord: string): Observable<Product[]> {
     const searchUrlById = `http://localhost:8080/api/products/search/findByNameContaining?name=${theKeyWord}`
 
