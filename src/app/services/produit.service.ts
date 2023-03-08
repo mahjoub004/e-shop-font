@@ -22,13 +22,22 @@ getProducts(theProductId: number): Observable<Product> {
   return this.httpClient.get<Product>(urlProductId);
 }
 //
-  getProductList(_theCategoryId: number = 1): Observable<Product[]>{
-    //@TODO : need to build URL based on category ID .. will come back to this
-    const searchUrlById = `http://localhost:8080/api/product-category/${_theCategoryId}/products`
+getProductList(_theCategoryId: number = 1): Observable<Product[]>{
+  //@TODO : need to build URL based on category ID .. will come back to this
+  const searchUrlById = `http://localhost:8080/api/product-category/${_theCategoryId}/products`
 
-    return this.httpClient.get<GetResponseProduct>(searchUrlById).pipe(
-      map(response => response._embedded.products)
-    );
+  return this.httpClient.get<GetResponseProduct>(searchUrlById).pipe(
+    map(response => response._embedded.products)
+  );
+}
+//
+  getProductListPaginate(_theCategoryId: number = 1,
+                          thePage:number,
+                          thePageSize: number): Observable<GetResponseProduct>{
+    //@TODO : need to build URL based on category ID .. will come back to this
+    const searchUrlById = `http://localhost:8080/api/product-category/${_theCategoryId}/products?page=${thePage}&size=${thePageSize}`
+
+    return this.httpClient.get<GetResponseProduct>(searchUrlById);
   }
 //
   getProductCategories():Observable <ProductCategory[]> {
@@ -51,6 +60,13 @@ getProducts(theProductId: number): Observable<Product> {
   interface GetResponseProduct{
     _embedded:{
       products:Product[];
+    },
+    page:{
+      size: number, // size of this page
+      totalElements : number, // grand total of all element in the database
+      totalPages : number, // total pzge available
+      number: number; //current page number
+
     }
   }
 
