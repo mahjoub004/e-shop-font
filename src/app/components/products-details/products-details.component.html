@@ -2,14 +2,17 @@
   <div class="row">
       <div class="col-md-6">
           <!-- image du produit -->
-          <img src="https://via.placeholder.com/350x250" alt="Produit" class="img-fluid">
+          <img src="{{product.imageUrl}}" alt="Produit" class="img-fluid">
+          <h3>Description:</h3>
+          <p>{{product.description}}</p>
       </div>
       <div class="col-md-6">
           <!-- détails du produit -->
           <h1>{{product.name}}</h1>
-          <p>{{product.sku}}</p>
-          <h2>{{product.unitPrice}}  €</h2>
-          <button class="btn btn-primary">Ajouter au panier</button>
+         <!--  <h2>{{product.unitPrice |currency:"EUR":"€"}} </h2>-->
+          <h2>{{product.unitPrice}} €</h2>
+          <button class="btn btn-success">Ajouter au panier</button>
+
       </div>
   </div>
 </div>

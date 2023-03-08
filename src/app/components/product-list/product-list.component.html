@@ -4,16 +4,15 @@
     <div class="col-md-4 mb-3" *ngFor="let tempProducts of products">
       <div class="card">
         <a routerLink="/products/{{tempProducts.id}}">
-          <img src="https://via.placeholder.com/300x200" class="card-img-top" alt="Produit 3" />
+          <img src="{{tempProducts.imageUrl}}" class="card-img-top" />
         </a>
         <div class="card-body">
           <a routerLink="/products/{{tempProducts.id}}">
             <h5 class="card-title">{{tempProducts.name}}</h5>
 
           </a>
-          <p class="card-text">{{tempProducts.description}}</p>
           <p class="card-text">{{tempProducts.unitPrice}} kg</p>
-          <a href="#" class="btn btn-primary">Acheter</a>
+          <a href="#" class="btn btn-success">Acheter</a>
         </div>
       </div>
     </div>
@@ -22,6 +21,5 @@
     <div class="alert alert-danger" role="alert" *ngIf="products?.length == 0">
       No products found
     </div>
-
   </div>
 </div>
