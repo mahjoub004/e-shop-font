@@ -9,6 +9,7 @@ import { ProductListComponent } from './components/product-list/product-list.com
 import { ProductCategoryMenuComponent } from './components/product-category-menu/product-category-menu.component';
 import { SearchComponent } from './components/search/search.component';
 import { ProductsDetailsComponent } from './components/products-details/products-details.component';
+import { NgxPaginationModule } from 'ngx-pagination';
 
 @NgModule({
   declarations: [
@@ -22,6 +23,7 @@ import { ProductsDetailsComponent } from './components/products-details/products
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
+    NgxPaginationModule,
   ],
   providers: [ProduitService],
   bootstrap: [AppComponent]

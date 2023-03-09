@@ -12,6 +12,7 @@ export class ProductListComponent implements OnInit {
   products: Product[] = [];
   currentCategoryId!: number;
   searchMode: boolean = false;
+  p:number = 1;
 
   constructor(
     private productService: ProduitService,
