@@ -11,7 +11,7 @@
           <h1>{{product.name}}</h1>
          <!--  <h2>{{product.unitPrice |currency:"EUR":"€"}} </h2>-->
           <h2>{{product.unitPrice}} €</h2>
-          <button class="btn btn-success">Ajouter au panier</button>
+          <button (click)="addToCart()" class="btn btn-success btn-sm">Ajouter au panier</button>
 
       </div>
   </div>
