@@ -10,6 +10,7 @@ import { ProductCategoryMenuComponent } from './components/product-category-menu
 import { SearchComponent } from './components/search/search.component';
 import { ProductsDetailsComponent } from './components/products-details/products-details.component';
 import { NgxPaginationModule } from 'ngx-pagination';
+import { CartStatusComponent } from './components/cart-status/cart-status.component';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,8 @@ import { NgxPaginationModule } from 'ngx-pagination';
     ProductListComponent,
     ProductCategoryMenuComponent,
     SearchComponent,
-    ProductsDetailsComponent
+    ProductsDetailsComponent,
+    CartStatusComponent
   ],
   imports: [
     BrowserModule,
