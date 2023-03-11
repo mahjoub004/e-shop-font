@@ -1,29 +1,20 @@
 <!-- Contenu de la page -->
-<div class="container mt-4">
+<div class="container mt-4" *ngFor="let tempCartItems of cartItems">
   <div class="row">
     <div class="col-md-6">
-      <img src="https://via.placeholder.com/500x500" class="img-fluid" alt="Image du produit">
+      <img src="{{tempCartItems.imageUrl}}" class="img-fluid" alt="Image du produit">
     </div>
-    <div class="col-md-6">
-      <h1>Nom du produit</h1>
-      <p>Description du produit</p>
-      <p>Prix : 29,99 €</p>
+    <div class="col-md-6" >
+      <h1>{{tempCartItems.name}}</h1>
+      <h5>Prix : {{tempCartItems.unitPrice}} €</h5>
       <form>
         <div class="form-group">
-          <label for="taille">Taille</label>
-          <select class="form-control" id="taille">
-            <option>S</option>
-            <option>M</option>
-            <option>L</option>
-            <option>XL</option>
-          </select>
+          <label for="quantite">Quantité :Kg</label>
+          <input type="number" class="form-control" id="quantite" value="{{tempCartItems.quatity}}" min="1">
         </div>
-        <div class="form-group">
-          <label for="quantite">Quantité</label>
-          <input type="number" class="form-control" id="quantite" value="1" min="1">
-        </div>
-        <button type="submit" class="btn btn-success mt-3">Ajouter au panier</button>
+        <button type="submit" class="btn btn-success mt-3">Total :</button>
       </form>
+      <hr>
     </div>
   </div>
 </div>
