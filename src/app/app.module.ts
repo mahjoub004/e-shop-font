@@ -11,6 +11,7 @@ import { SearchComponent } from './components/search/search.component';
 import { ProductsDetailsComponent } from './components/products-details/products-details.component';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { CartStatusComponent } from './components/cart-status/cart-status.component';
+import { CartDetailsComponent } from './components/cart-details/cart-details.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { CartStatusComponent } from './components/cart-status/cart-status.compon
     ProductCategoryMenuComponent,
     SearchComponent,
     ProductsDetailsComponent,
-    CartStatusComponent
+    CartStatusComponent,
+    CartDetailsComponent
   ],
   imports: [
     BrowserModule,
