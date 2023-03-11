@@ -32,7 +32,7 @@ export class CartDetailsComponent implements OnInit {
       data => this.totalQuantity = data
     )
 
-    //compute cart total proce and quantity
+    //compute cart total price and quantity
     this.cartService.computeCartTotals();
   }
 

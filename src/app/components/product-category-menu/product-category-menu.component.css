@@ -12,5 +12,11 @@
 }
 .list-group-item
 {
-    background-color: rgb(72, 189, 14);
+    background-color: rgb(33, 231, 43);
+}
+.list-group-item:hover{
+  background-color: forestgreen;
+}
+.card{
+  border: none;
 }
