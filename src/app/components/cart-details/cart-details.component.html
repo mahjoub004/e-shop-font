@@ -1,27 +1,33 @@
 <!-- Contenu de la page -->
-<div class="container mt-4 shadow p-3 mb-5 bg-body-tertiary rounded"
-*ngFor="let tempCartItems of cartItems">
-  <div class="row">
-    <div class="col-md-6">
-      <img src="{{tempCartItems.imageUrl}}" class="img-fluid" alt="Image du produit">
-    </div>
-    <div class="col-md-6">
-      <h1>{{tempCartItems.name}}</h1>
-      <h5>Prix : {{tempCartItems.unitPrice}} €</h5>
-      <form>
-        <div class="form-group">
-          <label for="quantite">Quantité :Kg</label>
-          <input type="number" class="form-control" id="quantite" value="{{tempCartItems.quatity}}" min="1">
-        </div>
-        <h5 class=" mt-3">sous-total :<span>{{(tempCartItems.unitPrice) * (tempCartItems.quatity)}} €</span></h5>
-      </form>
-      <hr>
+<div class="" *ngIf="cartItems.length > 0">
+  <div class="container mt-4 shadow p-3 mb-5 bg-body-tertiary rounded" *ngFor="let tempCartItems of cartItems">
+    <div class="row">
+      <div class="col-md-6">
+        <img src="{{tempCartItems.imageUrl}}" class="img-fluid" alt="Image du produit">
+      </div>
+      <div class="col-md-6">
+        <h1>{{tempCartItems.name}}</h1>
+        <h5>Prix : {{tempCartItems.unitPrice}} €</h5>
+        <form>
+          <div class="form-group">
+            <label for="quantite">Quantité :Kg</label>
+            <input type="number" class="form-control" id="quantite" value="{{tempCartItems.quatity}}" min="1">
+          </div>
+          <h5 class=" mt-3">sous-total :<span>{{(tempCartItems.unitPrice) * (tempCartItems.quatity)}} €</span></h5>
+        </form>
+        <hr>
+      </div>
     </div>
   </div>
+  <div class="container btn btn-success">
+    <p>-----------------------------------</p>
+    <h5>Total Quantity: {{totalQuantity}} : article</h5>
+    <h5>Total Price: {{totalPrice}} €</h5>
+    <p>-----------------------------------</p>
+  </div>
+
 </div>
-<div class="container btn btn-success">
-  <p>-----------------------------------</p>
-  <h5>Total Quantity: {{totalQuantity}} : article</h5>
-  <h5>Total Price: {{totalPrice}} €</h5>
-  <p>-----------------------------------</p>
-</div>
+  <!-- if cart is empty then display one message -->
+ <div class="alert alert-warning " role="alert" *ngIf="cartItems.length == 0">
+    Your shopping cart is empty
+  </div>
