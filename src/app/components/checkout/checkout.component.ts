@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-checkout',
@@ -7,9 +8,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CheckoutComponent implements OnInit {
 
-  constructor() { }
+checkoutFormGroupe : FormGroup | undefined; //declare our form group
+
+  constructor(private formBuilder : FormBuilder ) { } // injecte the form builder
 
   ngOnInit(): void {
+    this.checkoutFormGroupe = this.formBuilder.group({
+        customer: this.formBuilder.group({
+          firstName:[''],
+          lastName:[''],
+          email:['']
+        })
+    });
   }
 
 }

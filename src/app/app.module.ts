@@ -13,6 +13,7 @@ import { NgxPaginationModule } from 'ngx-pagination';
 import { CartStatusComponent } from './components/cart-status/cart-status.component';
 import { CartDetailsComponent } from './components/cart-details/cart-details.component';
 import { CheckoutComponent } from './components/checkout/checkout.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -30,6 +31,7 @@ import { CheckoutComponent } from './components/checkout/checkout.component';
     AppRoutingModule,
     HttpClientModule,
     NgxPaginationModule,
+    ReactiveFormsModule
   ],
   providers: [ProduitService],
   bootstrap: [AppComponent]
