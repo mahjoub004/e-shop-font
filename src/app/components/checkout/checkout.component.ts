@@ -20,8 +20,30 @@ export class CheckoutComponent implements OnInit {
           email:['']
         })
     });
+    shippingAdress: this.formBuilder.group({ //expédition
+      street:[''],
+      city:[''],
+      state:[''],
+      country:[''],
+      zipCode:[''],
+    })
+    BillingAdress: this.formBuilder.group({ // facturation
+      street:[''],
+      city:[''],
+      state:[''],
+      country:[''],
+      zipCode:[''],
+    })
+    creditCard: this.formBuilder.group({ // facturation
+      cardType:[''],
+      nameOnCard:[''],
+      cardNumber:[''],
+      securityCode:[''],
+      expirationMonth:[''],
+      expirationYear:[''],
+    })
   }
-  
+
   onSubmit(){
     console.log("handling the submit buttom");
     console.log(this.checkoutFormGroup.get('customer')?.value);
