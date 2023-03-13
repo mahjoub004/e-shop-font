@@ -11,8 +11,13 @@
         <form>
           <div class="form-group">
             <label for="quantite"></label>
-            <button type="button" class="btn btn-success m-4">
+            
+            <button
+            (click)="incrementQuantity(tempCartItems)"
+            type="button"
+            class="btn btn-success m-4">
               <i class="fa fa-plus" aria-hidden="true"></i>
+
               </button>
               <span style="font-size: 20px;font-weight: 900;"> {{tempCartItems.quatity}}</span> :Kg
               <button type="button" class="btn btn-success m-4">
