@@ -8,12 +8,12 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 })
 export class CheckoutComponent implements OnInit {
 
-checkoutFormGroupe : FormGroup | undefined; //declare our form group
+  checkoutFormGroup!: FormGroup;  //declare our form group
 
   constructor(private formBuilder : FormBuilder ) { } // injecte the form builder
 
   ngOnInit(): void {
-    this.checkoutFormGroupe = this.formBuilder.group({
+    this.checkoutFormGroup = this.formBuilder.group({
         customer: this.formBuilder.group({
           firstName:[''],
           lastName:[''],
