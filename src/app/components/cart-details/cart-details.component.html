@@ -10,8 +10,15 @@
         <h5>Prix : {{tempCartItems.unitPrice}} €</h5>
         <form>
           <div class="form-group">
-            <label for="quantite">Quantité :Kg</label>
-            <input type="number" class="form-control" id="quantite" value="{{tempCartItems.quatity}}" min="1">
+            <label for="quantite"></label>
+            <button type="button" class="btn btn-success m-4">
+              <i class="fa fa-plus" aria-hidden="true"></i>
+              </button>
+              <span style="font-size: 20px;font-weight: 900;"> {{tempCartItems.quatity}}</span> :Kg
+              <button type="button" class="btn btn-success m-4">
+                <i class="fa fa-minus" aria-hidden="true"></i>
+                </button>
+
           </div>
           <h5 class=" mt-3">sous-total :<span>{{(tempCartItems.unitPrice) * (tempCartItems.quatity)}} €</span></h5>
         </form>
