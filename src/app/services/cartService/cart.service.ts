@@ -7,6 +7,7 @@ import { CartItem } from 'src/app/common/cartItem/cart-item';
 })
 export class CartService {
 
+
   cartItems : CartItem[] = []; // our shopping cart // array of cartItem Objects
 
   totalPrice: Subject<number> = new Subject<number>();
@@ -65,8 +66,22 @@ export class CartService {
               }
               console.log(`totalPrice: ${totalPriceValue.toFixed(2)} , totalQuantity: ${totalQuantityValue}`);
               console.log("----------------------------");
-
-
-
           }
-}
+          decrementQuantity(theCartItem: CartItem) {
+            theCartItem.quatity-- ;
+            if (theCartItem.quatity === 0) {
+              this.remove(theCartItem)
+            }else{
+              this.computeCartTotals;
+            }
+      }
+        remove(theCartItem: CartItem) {
+          //get index of items in ths array;
+          const itemsIndex = this.cartItems.findIndex(tempCartItem => tempCartItem.id === theCartItem.id);
+          //if found , remove the items from the array at the give index
+          if (itemsIndex > -1) {
+              this.cartItems.splice(itemsIndex, 1) // At position  itemsIndex, remove 1 items:
+              this.computeCartTotals();
+          }
+        }
+      }
