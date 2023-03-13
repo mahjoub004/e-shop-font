@@ -1,6 +1,6 @@
 <!-- Contenu de la page -->
 <div class="" *ngIf="cartItems.length > 0">
-  <div class="container mt-4 shadow p-3 mb-5 bg-body-tertiary rounded" *ngFor="let tempCartItems of cartItems">
+  <div class=" mt-4 shadow p-3 mb-5 bg-body-tertiary rounded" *ngFor="let tempCartItems of cartItems">
     <div class="row">
       <div class="col-md-6">
         <img src="{{tempCartItems.imageUrl}}" class="img-fluid" alt="Image du produit">
@@ -17,28 +17,36 @@
             type="button"
             class="btn btn-success btn-sm m-4">
               <i class="fa fa-plus" aria-hidden="true"></i>
-
               </button>
+
               <span style="font-size: 20px;font-weight: 900;"> {{tempCartItems.quatity}}</span> :Kg
+
               <button type="button" class="btn btn-success btn-sm m-4"
               (click)="decrementQuantity(tempCartItems)">
                 <i class="fa fa-minus" aria-hidden="true"></i>
                 </button>
 
-          </div>
+                <button type="button" class="btn btn-success btn-sm m-5"
+                (click)="remove(tempCartItems)">
+                <i class="fa fa-trash" aria-hidden="true"></i>
+                  </button>
+
+          </div> <hr>
           <h5 class=" mt-3">sous-total :<span>{{(tempCartItems.unitPrice) * (tempCartItems.quatity)}} €</span></h5>
         </form>
-        <hr>
+
       </div>
     </div>
-  </div>
-  <div class="container btn btn-success">
-    <p>-----------------------------------</p>
-    <h5>Total Quantity: {{totalQuantity}} : article</h5>
-    <h5>Total Price: {{totalPrice}} €</h5>
-    <p>-----------------------------------</p>
-  </div>
 
+  </div>
+  <div class="alert alert-dark" role="alert" style="width: 300px;">
+      <p>-----------------------------------</p>
+      <h5>Total Quantity: {{totalQuantity}} : article</h5>
+      <h5>Total Price: {{totalPrice}} €</h5>
+      <p>-----------------------------------</p>
+      <button routerLink="/checkout" type="button" class="btn btn-success">Checkout</button>
+
+    </div>
 </div>
   <!-- if cart is empty then display one message -->
  <div class="alert alert-warning " role="alert" *ngIf="cartItems.length == 0">
