@@ -219,7 +219,9 @@
 
           <div class="col-md-3 mb-3">
             <label for="country">Expiration Year</label>
-            <select class="form-control d-block w-100" required  formControlName="expirationYear">
+            <select class="form-control d-block w-100"
+                     formControlName="expirationYear"
+                     (change)="handleMonthsAndYears()">
               <option *ngFor="let year of creditCardYears">{{year}}</option>
             </select>
             <div class="invalid-feedback">
