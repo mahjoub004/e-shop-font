@@ -8,11 +8,18 @@
           <h3>Customer</h3>
           <div class="col-md-6 mb-3">
             <label for="firstName">First name</label>
-            <input type="text" class="form-control" id="firstName" placeholder=" your First Name..." value="" required
+            <input type="text" class="form-control" placeholder=" your First Name..."
               formControlName="firstName">
-            <div class="invalid-feedback">
-              Valid first name is required.
+
+            <div *ngIf="firstName?.invalid && (firstName?.dirty || firstName?.touched)" class="alert alert-danger">
+                  <div *ngIf="firstName?.errors?.['required'] ">
+                        First Name required
+                  </div>
+                  <div *ngIf="firstName?.errors?.['required']">
+                    First Name must be at least 2 characteres long
+              </div>
             </div>
+
           </div>
 
           <div class="col-md-6 mb-3 ">
