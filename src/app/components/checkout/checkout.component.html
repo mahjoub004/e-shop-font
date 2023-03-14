@@ -41,8 +41,9 @@
           <div class="col-md-6 mb-3 ">
             <label for="country">Country</label>
             <select class="form-select d-block w-100" required formControlName="country">
-              <option value="">Choose...</option>
-              <option>United States</option>
+              <option *ngFor="let country of countries" [ngValue]="country">
+                {{country.name}}
+              </option>
             </select>
             <div class="invalid-feedback">
               Please select a valid country.
@@ -109,8 +110,10 @@
           <div class="col-md-6 mb-3 ">
             <label for="country">Country</label>
             <select class="form-select d-block w-100" required formControlName="country">
-              <option value="">Choose...</option>
-              <option>United States</option>
+              <option *ngFor="let country of countries" [ngValue]="country">
+                {{country.name}}
+              </option>
+
             </select>
             <div class="invalid-feedback">
               Please select a valid country.
