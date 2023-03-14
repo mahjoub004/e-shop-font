@@ -207,9 +207,10 @@
 
           <div class="col-md-3 mb-3">
             <label for="country">Expiration Month</label>
-            <select class="form-control d-block w-100" required required formControlName="expirationMonth">
-              <option value="">Choose...</option>
-              <option>To DO list Month </option>
+            <select class="form-control d-block w-100" required formControlName="expirationMonth">
+              <option *ngFor="let month of creditCardMonth">
+                {{month}}
+              </option>
             </select>
             <div class="invalid-feedback">
               Please select a valid type.
@@ -218,9 +219,8 @@
 
           <div class="col-md-3 mb-3">
             <label for="country">Expiration Year</label>
-            <select class="form-control d-block w-100" required required formControlName="expirationYear">
-              <option value="">Choose...</option>
-              <option>To DO list Year </option>
+            <select class="form-control d-block w-100" required  formControlName="expirationYear">
+              <option *ngFor="let year of creditCardYears">{{year}}</option>
             </select>
             <div class="invalid-feedback">
               Please select a valid type.
