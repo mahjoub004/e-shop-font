@@ -49,7 +49,6 @@ export class CheckoutComponent implements OnInit {
 
     });
 
-
   }
   copyShippingAddressToBillingAddress(event:any ){
 
