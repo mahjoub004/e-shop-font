@@ -10,6 +10,9 @@ export class CheckoutComponent implements OnInit {
 
   checkoutFormGroup!: FormGroup;  //declare our form group
 
+  totalPrice: number = 0;
+  totalQuantity : number = 0 ;
+
   constructor(private formBuilder : FormBuilder ) { } // injecte the form builder
 
   ngOnInit(): void {
