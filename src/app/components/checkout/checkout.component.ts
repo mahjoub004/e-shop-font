@@ -7,6 +7,7 @@ import {
 } from '@angular/forms';
 import { Country } from 'src/app/common/country/country';
 import { State } from 'src/app/common/state/state';
+import { CartService } from 'src/app/services/cartService/cart.service';
 import { ShopServiceFormService } from 'src/app/services/shopServiceForm/shop-service-form.service';
 import { ShopValidators } from 'src/app/validators/shop-validators';
 
@@ -18,8 +19,8 @@ import { ShopValidators } from 'src/app/validators/shop-validators';
 export class CheckoutComponent implements OnInit {
   checkoutFormGroup!: FormGroup; //declare our form group
 
-  totalPrice: number = 0;
-  totalQuantity: number = 0;
+   totalPrice :number = 0;
+   totalQuantity: number = 0;
 
   creditCardYears: number[] = [];
   creditCardMonth: number[] = [];
@@ -28,12 +29,17 @@ export class CheckoutComponent implements OnInit {
   shippingAddressStates: State[] = [];
   billingAddressStates: State[] = [];
 
+
+
   constructor(
     private formBuilder: FormBuilder,
-    private shopFormService: ShopServiceFormService
+    private shopFormService: ShopServiceFormService,
+    private cartService : CartService,
   ) {} // injecte the form builder and form service
 
   ngOnInit(): void {
+    this.reviewCartDetails();
+
     this.checkoutFormGroup = this.formBuilder.group({
       customer: this.formBuilder.group({
         firstName: new FormControl('', [
@@ -141,7 +147,23 @@ export class CheckoutComponent implements OnInit {
       console.log('Retrieved credit card years' + JSON.stringify(data));
       this.countries = data;
     });
+
+
+
   }
+//Price = this.cartService.totalPrice.subscribe(data => this.totalPrice = data);
+//this.subscribeQuantity = this.cartService.totalQuantity.subscribe(data => this.totalQuantity = data);
+  //method for review details cart in checkout component
+  reviewCartDetails() {
+      //subscribe to cartService .totalPrice
+     this.cartService.totalPrice.subscribe(
+      totalPrice => this.totalPrice = totalPrice);
+      //subscribe to cartService .totalQuantity
+        this.cartService.totalQuantity.subscribe(
+          totalQuantity => this.totalQuantity = totalQuantity);
+  }
+
+
   //diplay Validation error
   get firstName() {
     return this.checkoutFormGroup.get('customer.firstName');

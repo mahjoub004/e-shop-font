@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Subject } from 'rxjs';
+import { BehaviorSubject, Subject } from 'rxjs';
 import { CartItem } from 'src/app/common/cartItem/cart-item';
 
 @Injectable({
@@ -10,10 +10,10 @@ export class CartService {
 
   cartItems : CartItem[] = []; // our shopping cart // array of cartItem Objects
 
-  totalPrice: Subject<number> = new Subject<number>();
+  totalPrice: Subject<number> = new BehaviorSubject<number>(0);
   // we can use subject to publish event in our code
   //will be sent to all of the subscribers
-  totalQuantity: Subject<number> = new Subject<number>();
+  totalQuantity: Subject<number> = new BehaviorSubject<number>(0);
 
   constructor() { }
 
