@@ -12,7 +12,7 @@
             <input type="text" class="form-control" placeholder=" your First Name..." formControlName="firstName">
 
             <div *ngIf="firstName?.invalid && (firstName?.dirty || firstName?.touched)" class="alert alert-danger mt-2">
-              <div *ngIf="firstName?.errors?.['required'] ">
+              <div *ngIf="firstName?.errors?.['required'] || firstName?.errors?.['notOnlyWithespace']">
                 First Name required
               </div>
               <div *ngIf="firstName?.errors?.['minlength']">
@@ -26,7 +26,7 @@
             <input type="text" class="form-control" placeholder=" your Last Name..." value="" required
               formControlName="lastName">
             <div *ngIf="lastName?.invalid && (lastName?.dirty || lastName?.touched)" class="alert alert-danger mt-2">
-              <div *ngIf="lastName?.errors?.['required'] ">
+              <div *ngIf="lastName?.errors?.['required'] || lastName?.errors?.['notOnlyWithespace']">
                 First Name required
               </div>
               <div *ngIf="lastName?.errors?.['minlength']">
@@ -62,8 +62,11 @@
                 {{country.name}}
               </option>
             </select>
-            <div class="invalid-feedback">
-              Please select a valid country.
+            <!-- message error -->
+            <div *ngIf="shippingAddressCountry?.invalid && (shippingAddressCountry?.dirty || shippingAddressCountry?.touched)" class="alert alert-danger mt-2">
+              <div *ngIf="shippingAddressCountry?.errors?.['required'] ">
+              country is  required
+              </div>
             </div>
           </div>
 
@@ -71,9 +74,12 @@
             <label for="street">Street</label>
             <input type="text" class="form-control" placeholder=" your street..." value="" required
               formControlName="street">
-            <div class="invalid-feedback">
-              Valid last name is required.
-            </div>
+                <!-- message error -->
+                <div *ngIf="shippingAddressStreet?.invalid && (shippingAddressStreet?.dirty || shippingAddressStreet?.touched)" class="alert alert-danger mt-2">
+                  <div *ngIf="shippingAddressStreet?.errors?.['required'] || shippingAddressStreet?.errors?.['notOnlyWithespace'] ">
+                  your street is required
+                  </div>
+                </div>
           </div>
 
 
@@ -83,8 +89,11 @@
               <option value="">Choose...</option>
               <option>new york</option>
             </select>
-            <div class="invalid-feedback">
-              Please select a valid country.
+             <!-- message error -->
+             <div *ngIf="shippingAddressCity?.invalid && (shippingAddressCity?.dirty || shippingAddressCity?.touched)" class="alert alert-danger mt-2">
+              <div *ngIf="shippingAddressCity?.errors?.['required'] || shippingAddressCity?.errors?.['notOnlyWithespace'] ">
+              your city is required
+              </div>
             </div>
           </div>
 
@@ -96,8 +105,11 @@
                 {{state.name}}
               </option>
             </select>
-            <div class="invalid-feedback">
-              Please select a valid country.
+             <!-- message error -->
+             <div *ngIf="shippingAddressState?.invalid && (shippingAddressState?.dirty || shippingAddressState?.touched)" class="alert alert-danger mt-2">
+              <div *ngIf="shippingAddressState?.errors?.['required'] || shippingAddressState?.errors?.['notOnlyWithespace'] ">
+              your city is required
+              </div>
             </div>
           </div>
 
@@ -106,8 +118,11 @@
             <label for="zipCode">Zip Code</label>
             <input type="text" class="form-control" placeholder=" your zip Code..." value="" required
               formControlName="zipCode">
-            <div class="invalid-feedback">
-              Valid last name is required.
+             <!-- message error -->
+             <div *ngIf="shippingAddressZipCode?.invalid && (shippingAddressZipCode?.dirty || shippingAddressZipCode?.touched)" class="alert alert-danger mt-2">
+              <div *ngIf="shippingAddressZipCode?.errors?.['required'] || shippingAddressZipCode?.errors?.['notOnlyWithespace'] ">
+              your zip code is required
+              </div>
             </div>
           </div>
           <!-- add check box to copy shipping to billding -->
