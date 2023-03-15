@@ -157,19 +157,19 @@ export class CheckoutComponent implements OnInit {
   }
 // billing validation
 get billingAddressStreet() {
-  return this.checkoutFormGroup.get(' billingAddress.street');
+  return this.checkoutFormGroup.get('billingAddress.street');
 }
 get  billingAddressCity() {
-  return this.checkoutFormGroup.get(' billingAddress.city');
+  return this.checkoutFormGroup.get('billingAddress.city');
 }
 get  billingAddressState() {
-  return this.checkoutFormGroup.get(' billingAddress.state');
+  return this.checkoutFormGroup.get('billingAddress.state');
 }
 get  billingAddressZipCode() {
-  return this.checkoutFormGroup.get(' billingAddress.zipCode');
+  return this.checkoutFormGroup.get('billingAddress.zipCode');
 }
 get  billingAddressCountry() {
-  return this.checkoutFormGroup.get(' billingAddress.country');
+  return this.checkoutFormGroup.get('billingAddress.country');
 }
 
   copyShippingAddressToBillingAddress(event: any) {
