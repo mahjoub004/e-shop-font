@@ -147,31 +147,37 @@
               <option *ngFor="let country of countries" [ngValue]="country">
                 {{country.name}}
               </option>
-
             </select>
-            <div class="invalid-feedback">
-              Please select a valid country.
-            </div>
+                 <!-- message error -->
+                 <div *ngIf="billingAddressCountry?.invalid && (billingAddressCountry?.dirty || billingAddressCountry?.touched)" class="alert alert-danger mt-2">
+                  <div *ngIf="billingAddressCountry?.errors?.['required'] || billingAddressCountry?.errors?.['notOnlyWithespace'] ">
+                  your country is required
+                  </div>
+                </div>
           </div>
 
           <div class="col-md-6 mb-3 ">
             <label for="street">Street</label>
             <input type="text" class="form-control" placeholder=" your street..." value="" required
               formControlName="street">
-            <div class="invalid-feedback">
-              Valid last name is required.
+            <!-- message error -->
+            <div *ngIf="billingAddressStreet?.invalid && (billingAddressStreet?.dirty || billingAddressStreet?.touched)" class="alert alert-danger mt-2">
+              <div *ngIf="billingAddressStreet?.errors?.['required'] || billingAddressStreet?.errors?.['notOnlyWithespace'] ">
+              your street is required
+              </div>
             </div>
           </div>
 
 
           <div class="col-md-6 mb-3 ">
             <label for="city">City</label>
-            <select class="form-select d-block w-100" required formControlName="city">
-              <option value="">Choose...</option>
-              <option>new york</option>
-            </select>
-            <div class="invalid-feedback">
-              Please select a valid country.
+            <input type="text" class="form-control" placeholder=" your City..."
+            formControlName="city">
+            <!-- message error -->
+            <div *ngIf="billingAddressCity?.invalid && (billingAddressCity?.dirty || billingAddressCity?.touched)" class="alert alert-danger mt-2">
+              <div *ngIf="billingAddressCity?.errors?.['required'] || billingAddressCity?.errors?.['notOnlyWithespace'] ">
+              your city is required
+              </div>
             </div>
           </div>
 
@@ -183,9 +189,12 @@
                 {{state.name}}
               </option>
             </select>
-            <div class="invalid-feedback">
-              Please select a valid country.
-            </div>
+                <!-- message error -->
+                <div *ngIf="billingAddressState?.invalid && (billingAddressState?.dirty || billingAddressState?.touched)" class="alert alert-danger mt-2">
+                  <div *ngIf="billingAddressState?.errors?.['required'] || billingAddressState?.errors?.['notOnlyWithespace'] ">
+                  your state is required
+                  </div>
+                </div>
           </div>
 
 
@@ -193,9 +202,12 @@
             <label for="zipCode">Zip Code</label>
             <input type="text" class="form-control" placeholder=" your zip Code..." value="" required
               formControlName="zipCode">
-            <div class="invalid-feedback">
-              Valid last name is required.
-            </div>
+              <!-- message error -->
+              <div *ngIf="billingAddressZipCode?.invalid && (billingAddressZipCode?.dirty || billingAddressZipCode?.touched)" class="alert alert-danger mt-2">
+                <div *ngIf="billingAddressZipCode?.errors?.['required'] || billingAddressZipCode?.errors?.['notOnlyWithespace'] ">
+                your zip code is required
+                </div>
+              </div>
           </div>
 
         </div>
