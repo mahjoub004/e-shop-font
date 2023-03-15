@@ -240,36 +240,60 @@
               <option>visa </option>
               <option>MasterCard </option>
             </select>
-            <div class="invalid-feedback">
-              Please select a valid type.
-            </div>
+                <!-- message error -->
+                <div *ngIf="creditCardType?.invalid && (creditCardType?.dirty || creditCardType?.touched)" class="alert alert-danger mt-2">
+                  <div *ngIf="creditCardType?.errors?.['required']">
+                 credit card type is required
+                  </div>
+                </div>
           </div>
 
           <div class="col-md-6 mb-3 ">
             <label for="street">Name on Card </label>
             <input type="text" class="form-control" placeholder=" your name on the card..." value="" required
               formControlName="nameOnCard">
-            <div class="invalid-feedback">
-              Valid last name is required.
-            </div>
+                <!-- message error -->
+                <div *ngIf="creditCardNameOnCard?.invalid && (creditCardNameOnCard?.dirty || creditCardNameOnCard?.touched)" class="alert alert-danger mt-2">
+                  <div *ngIf="creditCardNameOnCard?.errors?.['required'] || creditCardNameOnCard?.errors?.['notOnlyWithespace'] ">
+                 name in card  is required
+                  </div>
+
+                  <div *ngIf="creditCardNameOnCard?.errors?.['minlength'] ">
+                    name must be at least 2 characters long
+                    </div>
+                </div>
           </div>
 
           <div class="col-md-6 mb-3 ">
             <label for="street">Card Number </label>
             <input type="text" class="form-control" placeholder=" your card number ..." value="" required
               formControlName="cardNumber">
-            <div class="invalid-feedback">
-              Valid last name is required.
-            </div>
+                <!-- message error -->
+                <div *ngIf="creditCardNumber?.invalid && (creditCardNumber?.dirty || creditCardNumber?.touched)" class="alert alert-danger mt-2">
+                  <div *ngIf="creditCardNumber?.errors?.['required'] || creditCardNumber?.errors?.['notOnlyWithespace'] ">
+                card  number is required
+                  </div>
+
+                  <div *ngIf="creditCardNumber?.errors?.['pattern'] ">
+                    Card number must be 16 digits long
+                    </div>
+                </div>
           </div>
 
           <div class="col-md-6 mb-3 ">
             <label for="street">security code </label>
             <input type="text" class="form-control" placeholder=" your security code ..." value="" required
               formControlName="securityCode">
-            <div class="invalid-feedback">
-              Valid last name is required.
+          <!-- message error -->
+          <div *ngIf="creditCardSecurityCode?.invalid && (creditCardSecurityCode?.dirty || creditCardSecurityCode?.touched)" class="alert alert-danger mt-2">
+            <div *ngIf="creditCardSecurityCode?.errors?.['required'] || creditCardSecurityCode?.errors?.['notOnlyWithespace'] ">
+          security code is required
             </div>
+
+            <div *ngIf="creditCardSecurityCode?.errors?.['pattern'] ">
+              security code must be 3 digits long
+              </div>
+          </div>
           </div>
 
           <div class="col-md-3 mb-3">
