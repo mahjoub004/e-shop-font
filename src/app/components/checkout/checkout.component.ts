@@ -151,9 +151,7 @@ export class CheckoutComponent implements OnInit {
 
 
   }
-//Price = this.cartService.totalPrice.subscribe(data => this.totalPrice = data);
-//this.subscribeQuantity = this.cartService.totalQuantity.subscribe(data => this.totalQuantity = data);
-  //method for review details cart in checkout component
+
   reviewCartDetails() {
       //subscribe to cartService .totalPrice
      this.cartService.totalPrice.subscribe(
