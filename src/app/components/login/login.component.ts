@@ -14,10 +14,15 @@ export class LoginComponent implements OnInit {
 
   constructor(@Inject(OKTA_AUTH) private oktaAuth: OktaAuth) {
     this.oktaSignin = new OktaSignIn({
-      logo:'assets/img/products.logo.jpg',
+
+      logo:'./assets/img/products/logo.jpg',
+
       baseUrl: myAppConfig.oidc.issuer.split('/oauth2')[0],
-      lientId: myAppConfig.oidc.clientId,
+
+      clientId: myAppConfig.oidc.clientId,
+
       redirectUri: myAppConfig.oidc.redirctUri,
+
       authParams: {
         pkce: true,
         issuer: myAppConfig.oidc.issuer,
@@ -30,20 +35,17 @@ export class LoginComponent implements OnInit {
     this.oktaSignin.remove();
 
     this.oktaSignin.renderEl({
-      el:'#okta-sign-in-widget' },// this name should be same as div tag id in login.componet/html
+      el: '#okta-sign-in-widget'},// this name should be same as div tag id in login.componet/html
 
         (response:any) => {
-            if (response === 'SUCCESS') {
+            if (response.status === 'SUCCESS') {
                 this.oktaAuth.signInWithRedirect();
             }
         },
           (error: any) => {
             throw error;
           }
-
-
-      )
-
+      );
 
       }
 }
