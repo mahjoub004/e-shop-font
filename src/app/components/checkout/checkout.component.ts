@@ -1,3 +1,4 @@
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import {
   FormBuilder,
@@ -5,9 +6,14 @@ import {
   FormGroup,
   Validators,
 } from '@angular/forms';
+import { Router } from '@angular/router';
 import { Country } from 'src/app/common/country/country';
+import { Order } from 'src/app/common/order/order';
+import { OrderItem } from 'src/app/common/orderItem/order-item';
+import { Purchase } from 'src/app/common/purchase/purchase';
 import { State } from 'src/app/common/state/state';
 import { CartService } from 'src/app/services/cartService/cart.service';
+import { CheckoutService } from 'src/app/services/checkoutService/checkout.service';
 import { ShopServiceFormService } from 'src/app/services/shopServiceForm/shop-service-form.service';
 import { ShopValidators } from 'src/app/validators/shop-validators';
 
@@ -35,6 +41,8 @@ export class CheckoutComponent implements OnInit {
     private formBuilder: FormBuilder,
     private shopFormService: ShopServiceFormService,
     private cartService : CartService,
+    private checkoutService : CheckoutService,
+    private router : Router
   ) {} // injecte the form builder and form service
 
   ngOnInit(): void {
@@ -206,7 +214,7 @@ get  billingAddressCountry() {
 }
 //credit card valodation
 get  creditCardType() { return this.checkoutFormGroup.get('creditCard.cardType');}
-get  creditCardNameOnCard() { return this.checkoutFormGroup.get('creditCard.NameOnCard');}
+get  creditCardNameOnCard() { return this.checkoutFormGroup.get('creditCard.nameOnCard');}
 get  creditCardNumber() { return this.checkoutFormGroup.get('creditCard.cardNumber');}
 get  creditCardSecurityCode() { return this.checkoutFormGroup.get('creditCard.securityCode');}
 //
@@ -222,27 +230,80 @@ get  creditCardSecurityCode() { return this.checkoutFormGroup.get('creditCard.se
       this.billingAddressStates = [];
     }
   }
+
+
   onSubmit() {
     console.log('handling the submit buttom');
     if (this.checkoutFormGroup.invalid) {
       this.checkoutFormGroup.markAllAsTouched();
-      console.log('je suis dans le if de onSubmit');
+      return;
     }
-    console.log(this.checkoutFormGroup.get('customer')?.value);
-    console.log(
-      'the shipping address is ' +
-        this.checkoutFormGroup.get('customer')?.value.email
-    );
-    console.log(
-      'the shipping address country is ' +
-        this.checkoutFormGroup.get('shippingAddress')?.value.country.name
-    );
-    console.log(
-      'the shipping address state is ' +
-        this.checkoutFormGroup.get('shippingAddress')?.value.state.name
-    );
-  }
+    //set up order
+    let order = new Order();
+    order.totalPrice = this.totalPrice;
+    order.totalQuantity = this.totalQuantity;
 
+    //set up cart items (configuration)
+    const cartItems = this.cartService.cartItems;
+
+    //create orderItems from cartItems
+    let orderItems : OrderItem[] = cartItems.map(tempCartItem => new OrderItem(tempCartItem));
+
+    //set up purchase
+    let purchase = new Purchase();
+
+    //populate purchase - customer
+      purchase.customer = this.checkoutFormGroup.controls['customer'].value;
+
+    //populate purchase  - shipping address
+    purchase.shippingAddress = this.checkoutFormGroup.controls['shippingAddress'].value;
+    const shippingState:State = JSON.parse(JSON.stringify(purchase.shippingAddress.state))
+    const shippingCountry:Country = JSON.parse(JSON.stringify(purchase.shippingAddress.country))
+    purchase.shippingAddress.state = shippingState.name;
+    purchase.shippingAddress.country = shippingCountry.name;
+
+    //populate purchase  - billing address
+    purchase.billingAddress = this.checkoutFormGroup.controls['billingAddress'].value;
+    const billingState:State = JSON.parse(JSON.stringify(purchase.billingAddress.state))
+    const billingCountry:Country = JSON.parse(JSON.stringify(purchase.billingAddress.country))
+    purchase.billingAddress.state = billingState.name;
+    purchase.billingAddress.country = billingCountry.name;
+
+    //populate purchase order and order items
+    purchase.order = order;
+    purchase.orderItems = orderItems;
+
+
+    //call REST API via the checkoutService
+      this.checkoutService.placeOrder(purchase).subscribe({
+        next: response => { // success/happy
+          console.log("salut ca va ");
+            console.log(response);
+
+          alert(`Your order has been received.\n Order traking number:${response.orderTrackingNumber}`);
+          // reset cart
+          this.resetCart();
+        },
+        error : err => {
+          console.log("error je suis la la ");
+
+          alert(`there was an error : ${err.message}`)
+        }  // error: error/exception
+      }
+      )
+  }
+//
+  resetCart(){
+      //reset cart data
+      this.cartService.cartItems = [];
+      this.cartService.totalPrice.next(0);
+      this.cartService.totalQuantity.next(0);
+      //reset the form
+      this.checkoutFormGroup.reset();
+      //navigation back to the products page
+      this.router.navigateByUrl("/products");
+  }
+//
   handleMonthsAndYears() {
     const creditCardFormGroup = this.checkoutFormGroup.get('creditCard');
     const currentYears: number = new Date().getFullYear();
