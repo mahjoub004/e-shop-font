@@ -254,7 +254,7 @@
               formControlName="nameOnCard">
                 <!-- message error -->
                 <div *ngIf="creditCardNameOnCard?.invalid && (creditCardNameOnCard?.dirty || creditCardNameOnCard?.touched)" class="alert alert-danger mt-2">
-                  <div *ngIf="creditCardNameOnCard?.errors?.['required'] || creditCardNameOnCard?.errors?.['notOnlyWithespace'] ">
+                  <div *ngIf="creditCardNameOnCard?.errors?.['required'] || creditCardNameOnCard?.errors?.['notOnlyWithspace'] ">
                  name in card  is required
                   </div>
 

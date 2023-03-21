@@ -12,19 +12,19 @@ export class ProduitService {
 
   //http://localhost:8080/api/product-category/2/products
 
-  private baseUrl = 'http://localhost:8080/api/product-category'
+  private baseUrl = 'http://localhost:8081/api/product-category'
 
   constructor(private httpClient : HttpClient ) { }
 //
 getProducts(theProductId: number): Observable<Product> {
   // need to build URL based on product Id
-  const urlProductId = `http://localhost:8080/api/products/${theProductId}`;
+  const urlProductId = `http://localhost:8081/api/products/${theProductId}`;
   return this.httpClient.get<Product>(urlProductId);
 }
 //
 getProductList(_theCategoryId: number = 1): Observable<Product[]>{
   //@TODO : need to build URL based on category ID .. will come back to this
-  const searchUrlById = `http://localhost:8080/api/product-category/${_theCategoryId}/products`
+  const searchUrlById = `http://localhost:8081/api/product-category/${_theCategoryId}/products`
 
   return this.httpClient.get<GetResponseProduct>(searchUrlById).pipe(
     map(response => response._embedded.products)
@@ -39,7 +39,7 @@ getProductList(_theCategoryId: number = 1): Observable<Product[]>{
   }
 //
   searchProducts(theKeyWord: string): Observable<Product[]> {
-    const searchUrlById = `http://localhost:8080/api/products/search/findByNameContaining?name=${theKeyWord}`
+    const searchUrlById = `http://localhost:8081/api/products/search/findByNameContaining?name=${theKeyWord}`
 
     return this.httpClient.get<GetResponseProduct>(searchUrlById).pipe(
       map(response => response._embedded.products)
